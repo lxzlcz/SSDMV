@@ -16,4 +16,4 @@ Another notices:
 2) Embedding models used in data proprecessing part:
       Node2Vec: https://github.com/aditya-grover/node2vec
       Doc2Vec: https://radimrehurek.com/gensim/models/doc2vec.html
-3) Due to the upload size limitation of github, we cannot upload the pre-learned representation vectors of different views. However with the above tools and default parameters, it will be easy to generate representations and reproduce the experomental results. 
+3) Due to the upload size limitation of github, we cannot upload the pre-learned representation vectors of different views. However with the above tools and default parameters, it will be easy to generate representations and reproduce the experomental results.
