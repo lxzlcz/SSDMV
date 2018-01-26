@@ -9,7 +9,7 @@ Three .py files:
 
 To run the model, just run python TrainLadder.py
 
-Another notices:
+Other notices:
 1) data sources: 
       Twitter: http://web.cs.wpi.edu/~kmlee/data.html 
       Sina: https://aminer.org/data-sna\#Weibo-Net-Tweet
