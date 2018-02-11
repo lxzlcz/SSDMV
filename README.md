@@ -1,9 +1,10 @@
 # SSDMV
 
 The source code of the paper ''SSDMV: Semi-supervised Deep Social Spammer Detection by Multi-View Data Fusion''. 
+
 The code is modified from code of ladder network:
-    1) https://github.com/rinuboney/ladder
-    2) https://github.com/rinuboney/ladder. 
+1) https://github.com/CuriousAI/ladder
+2) https://github.com/rinuboney/ladder 
 
 
 Three .py files:
