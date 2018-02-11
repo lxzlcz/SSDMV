@@ -38,20 +38,22 @@ class Ladder(object):
         self.denoising_cost_t = [1000.0, 10.0, 0.10, 0.10,  0.10]
         self.denoising_cost_u = [1000.0, 10.0, 0.10, 0.10,  0.10]
 
-        #这里数据加载的时候有点意思,假如一个batch是50,那么x中的前50个是unlabel的,而x中的50~100个是有label的#
+        #假如一个batch是50,那么x中的前50个是unlabel的,而x中的50~100个是有label的#
         #从输入的x中取出有label的样本#
-
+        #Get labeled samples from a batch#
         self.labeled = lambda x: tf.slice(x, [0, 0], [self.batch_size if self.label_nums >= self.batch_size else self.label_nums, -1]) if x is not None else x
         #从输入的x中取出没有label的样本#
+        #Get unlabeled samples from a batch#
         self.unlabeled = lambda x: tf.slice(x, [self.batch_size if self.label_nums >= self.batch_size else self.label_nums, 0], [-1, -1]) if x is not None else x
         #将输入的x分成有label的和没有label的两个集合#
+        #Get labeled & unlabeled samples from a batch#
         self.split_lu = lambda x: (self.labeled(x), self.unlabeled(x))
-
-        #连接两个矩阵,dim为0,就是把两个矩阵给叠在一起#
+        
         self.join = lambda l, u: tf.concat([l, u], 0)
         self.model()
 
     #生成每一层的偏置向量,根据输入的inits的不同,生成不同的向量,一般为全1或者全0#
+    #generate the weights and bias for each layer#
     def bi(self, inits, size, name):
         return tf.Variable(inits * tf.ones([size]), name=name)
 
@@ -241,9 +243,6 @@ class Ladder(object):
 
         #W:encoder里面的每一层的参数#
         #V:decoder里面的每一层的参数矩阵,与W不共享参数
-        #beta为第6页公式里的beta,这里默认为全0#
-        #gamma为第6页公式里的gamma,这里默认为全1#
-        #相当于就是公式里的z_l做了一个变换#
         weights_t = dict(W=[self.wi(s, "W") for s in shapes_t], V=[self.wi(s[::-1], "V") for s in shapes_t],
                        beta=[self.bi(0.0, self.layer_sizes_t[l + 1], "beta") for l in range(self.L_t)],
                        gamma=[self.bi(1.0, self.layer_sizes_t[l + 1], "gamma") for l in range(self.L_t)])
