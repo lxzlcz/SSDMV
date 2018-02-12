@@ -26,10 +26,10 @@ class Ladder(object):
         self.starter_learning_rate = 0.02
 
         # epoch after which to begin learning rate decay#
-        self.decay_after = 15
+        self.decay_after = 10
         #batch size#
         self.batch_size = 200
-        self.noise_std = 0.5  # scaling factor for noise used in corrupted encoder
+        self.noise_std = 0.3  # scaling factor for noise used in corrupted encoder
         
         # hyperparameters that denote the importance of each layer
         self.denoising_cost_p = [1000.0, 10.0, 0.10, 0.10,  0.10]
