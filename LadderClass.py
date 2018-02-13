@@ -218,6 +218,7 @@ class Ladder(object):
         y_t, clean_t = self.encoder(self.inputs_t, 0.0, weights_t, self.training, ewma, running_mean_t, running_var_t, self.L_t, self.layer_sizes_t)  # 0.0 -> do not add noise
         y_u, clean_u = self.encoder(self.inputs_u, 0.0, weights_u, self.training, ewma, running_mean_u, running_var_u, self.L_u, self.layer_sizes_u)  # 0.0 -> do not add noise
 
+        print "=== Filter Gate ==="
         z_c_pt = tf.sigmoid(tf.matmul(y_c_p, z_p) + tf.matmul(y_c_t, z_t))
         z_c_pu = tf.sigmoid(tf.matmul(y_c_p, z_p) + tf.matmul(y_c_u, z_u))
         z_c_tu = tf.sigmoid(tf.matmul(y_c_t, z_t) + tf.matmul(y_c_u, z_u))
